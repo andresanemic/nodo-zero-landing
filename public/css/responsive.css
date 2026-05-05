@@ -1,0 +1,232 @@
+/* ═══════════════════════════════════════════════════════════
+   NODO ZERO — RESPONSIVE CSS
+   Mobile-first adjustments
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Large Desktop 1440px+ ── */
+@media (min-width: 1440px) {
+  .section-container { max-width: 1320px; }
+  .pillars-grid { gap: 36px; }
+  .team-grid { gap: 36px; }
+}
+
+/* ── Tablet Landscape 1024px ── */
+@media (max-width: 1024px) {
+  .section-container { padding: 100px 36px 64px; }
+
+  /* Event section */
+  .event-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .event-right { position: static; }
+
+  .event-date-num { font-size: 64px; }
+
+  .hero-stats {
+    bottom: 32px;
+    right: 24px;
+    padding: 12px 18px;
+    gap: 14px;
+  }
+
+  .stat-number { font-size: 22px; }
+
+  .pillars-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .pillar-card { padding: 36px 24px; }
+  .pillar-title { font-size: 22px; }
+
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .team-card-inner { padding: 30px 24px; }
+
+  .allies-grid { grid-template-columns: repeat(4, 1fr); }
+  .ally-node[style*="--col: 5"] { --col: 4; }
+}
+
+/* ── Tablet Portrait 768px ── */
+@media (max-width: 768px) {
+  html { scroll-snap-type: none; }
+
+  /* Disable custom cursor on touch */
+  #cursor, #cursor-trail { display: none; }
+  *, *::before, *::after { cursor: auto; }
+
+  /* Side nav — hide on mobile */
+  #side-nav { display: none; }
+
+  .section-container { padding: 80px 24px 56px; }
+  .section-header { margin-bottom: 48px; }
+
+  /* Hero */
+  .section--hero { align-items: flex-start; padding-top: 80px; }
+
+  .hero-content { padding: 0 16px; }
+
+  .hero-logo { margin-bottom: 28px; }
+  .logo-symbol { font-size: 28px; }
+  .logo-text { font-size: 18px; }
+
+  .hero-tagline { font-size: clamp(32px, 8vw, 52px); }
+  .hero-subtitle { font-size: 15px; margin-bottom: 40px; }
+
+  .hero-stats {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    margin: 40px auto 0;
+    width: fit-content;
+    background: rgba(15, 15, 26, 0.8);
+  }
+
+  /* Pillars — stack 2 columns */
+  .pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .pillar-card:last-child {
+    grid-column: 1 / -1;
+    max-width: 380px;
+    justify-self: center;
+  }
+
+  /* Projects */
+  .projects-track-wrap { margin: 0 -24px; }
+  .projects-track { padding: 16px 24px 36px; gap: 16px; }
+  .project-card { flex: 0 0 280px; height: 340px; }
+  .drag-hint { padding: 0 24px; }
+
+  /* Event section */
+  .event-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .event-right { position: static; transform: none !important; }
+
+  .event-title { font-size: clamp(24px, 6vw, 40px); }
+
+  .event-meta { grid-template-columns: 1fr 1fr; }
+
+  .event-ctas { flex-direction: column; }
+
+  .event-ctas .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .event-date-num { font-size: 60px; }
+
+  /* Team — stack to 2 columns */
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .team-card:last-child {
+    grid-column: 1 / -1;
+    max-width: 360px;
+    justify-self: center;
+  }
+
+  /* Allies */
+  .allies-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 16px;
+  }
+
+  .ally-node {
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+
+  /* CTA */
+  .cta-buttons { flex-direction: column; align-items: center; }
+  .btn { width: 100%; max-width: 280px; justify-content: center; }
+
+  /* Footer */
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+    padding: 0 24px;
+  }
+
+  /* Orbitals — smaller on mobile */
+  .orbital--1 { width: 300px; height: 300px; }
+  .orbital--2 { width: 500px; height: 500px; }
+  .orbital--3 { width: 700px; height: 700px; }
+}
+
+/* ── Mobile 480px ── */
+@media (max-width: 480px) {
+  .section-container { padding: 72px 20px 48px; }
+
+  .section-title { font-size: clamp(28px, 7vw, 40px); }
+
+  /* Pillars — single column */
+  .pillars-grid { grid-template-columns: 1fr; }
+  .pillar-card:last-child { max-width: 100%; }
+
+  /* Team — single column */
+  .team-grid { grid-template-columns: 1fr; }
+  .team-card:last-child { max-width: 100%; }
+
+  /* Projects */
+  .project-card { flex: 0 0 260px; height: 320px; }
+
+  /* Allies */
+  .allies-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Event */
+  .event-meta { grid-template-columns: 1fr; }
+  .event-date-num { font-size: 52px; }
+  .event-ctas .btn { max-width: 100%; }
+
+  /* Hero */
+  .hero-tagline { font-size: clamp(28px, 8vw, 40px); }
+
+  /* Hero stats — simplified */
+  .hero-stats { gap: 12px; padding: 10px 16px; }
+  .stat-number { font-size: 20px; }
+  .stat-divider { height: 30px; }
+}
+
+/* ── Reduced Motion Preference ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .scroll-dot { animation: none; }
+  .logo-symbol { animation: none; filter: drop-shadow(0 0 8px #00FF88); }
+  .ally-logo { animation: none; }
+  .orbital { animation: none; }
+}
+
+/* ── Print styles ── */
+@media print {
+  #cursor, #cursor-trail, #side-nav, #scroll-progress,
+  #space-canvas, #cta-particles-canvas,
+  .cta-orbitals, .hero-particles, .pillar-particles { display: none; }
+
+  body { background: white; color: black; }
+  .section { page-break-after: always; min-height: auto; }
+  .section-title, .hero-tagline, .cta-title { color: black; }
+  .logo-accent, .tagline-accent, .section-title em,
+  .cta-line--accent { color: #006633; }
+}

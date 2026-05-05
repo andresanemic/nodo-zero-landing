@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nodo Zero — El primer laboratorio blockchain universitario de Chile. Formación, incubación y conexión Web3 desde Latinoamérica." />
+  <meta name="keywords" content="blockchain, Web3, Chile, laboratorio, universidad, incubación, USACH" />
+  <meta property="og:title" content="Nodo Zero — Innovación Web3 desde Chile" />
+  <meta property="og:description" content="El primer nodo de innovación Web3 de Chile. De estudiantes a founders." />
+  <meta property="og:type" content="website" />
+  <title>Nodo Zero — El Primer Laboratorio Blockchain de Chile</title>
+  <link rel="icon" type="image/svg+xml" href="public/favicon.svg" />
+
+  <!-- Preload critical fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- CDN Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js" defer></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="public/css/main.css" />
+  <link rel="stylesheet" href="public/css/cursor.css" />
+  <link rel="stylesheet" href="public/css/responsive.css" />
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div id="cursor" aria-hidden="true">
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+  </div>
+  <canvas id="cursor-trail" aria-hidden="true"></canvas>
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Side Navigation Dots -->
+  <nav id="side-nav" aria-label="Navegación de secciones">
+    <ul>
+      <li><a href="#hero" class="nav-dot active" data-label="Inicio" aria-label="Ir a Inicio"></a></li>
+      <li><a href="#about" class="nav-dot" data-label="Qué es" aria-label="Ir a Qué es Nodo Zero"></a></li>
+      <li><a href="#event" class="nav-dot" data-label="Evento" aria-label="Ir a Próximo Evento"></a></li>
+      <li><a href="#team" class="nav-dot" data-label="Equipo" aria-label="Ir a Equipo"></a></li>
+      <li><a href="#allies" class="nav-dot" data-label="Alianzas" aria-label="Ir a Alianzas"></a></li>
+      <li><a href="#cta" class="nav-dot" data-label="Únete" aria-label="Ir a Únete"></a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- SECTION 1: HERO                                     -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section id="hero" class="section section--hero">
+    <!-- Three.js Canvas -->
+    <canvas id="space-canvas" aria-hidden="true"></canvas>
+
+    <!-- Floating particles overlay -->
+    <div id="hero-particles" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <!-- Logo / Brand -->
+      <div class="hero-logo" data-gsap="fade-up">
+        <span class="logo-symbol" aria-hidden="true">⬡</span>
+        <span class="logo-text">NODO<span class="logo-accent">ZERO</span></span>
+      </div>
+
+      <!-- Tagline with typewriter -->
+      <h1 class="hero-tagline" data-gsap="fade-up">
+        <span class="tagline-line">EL PRIMER NODO DE</span>
+        <span class="tagline-line tagline-accent">INNOVACIÓN WEB3</span>
+        <span class="tagline-line">DE CHILE</span>
+      </h1>
+
+      <p class="hero-subtitle" data-gsap="fade-up">
+        De estudiantes a founders.<br />
+        Construyendo el futuro descentralizado desde Latinoamérica.
+      </p>
+
+      <!-- 3D Network Node (Three.js target) -->
+      <div id="hero-node" aria-hidden="true"></div>
+
+      <!-- Scroll CTA -->
+      <div class="hero-scroll-cta" data-gsap="fade-up" aria-label="Desplázate para explorar">
+        <span class="scroll-label">Explorar</span>
+        <div class="scroll-arrow" aria-hidden="true">
+          <svg width="24" height="40" viewBox="0 0 24 40" fill="none">
+            <rect x="1" y="1" width="22" height="36" rx="11" stroke="#00FF88" stroke-width="1.5"/>
+            <circle class="scroll-dot" cx="12" cy="10" r="3" fill="#00FF88"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats floating badge -->
+    <div class="hero-stats" data-gsap="fade-right">
+      <div class="stat-item">
+        <span class="stat-number">6</span>
+        <span class="stat-label">Proyectos</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item">
+        <span class="stat-number">3</span>
+        <span class="stat-label">Fundadores</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item">
+        <span class="stat-number">∞</span>
+        <span class="stat-label">Potencial</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- SECTION 2: ABOUT / QUÉ ES NODO ZERO                -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section id="about" class="section section--about">
+    <div class="section-container">
+      <div class="section-header" data-gsap="fade-up">
+        <span class="section-label">/ 01 &nbsp; QUÉ ES</span>
+        <h2 class="section-title">Tres pilares.<br /><em>Un ecosistema.</em></h2>
+      </div>
+
+      <div class="pillars-grid">
+        <!-- Pilar 1 -->
+        <article class="pillar-card" data-gsap="pillar" data-index="0">
+          <div class="pillar-icon-wrap" aria-hidden="true">
+            <div class="pillar-icon pillar-icon--formation">
+              <svg viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="28" r="14" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M20 60 C20 48 60 48 60 60" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="40" cy="28" r="5" fill="currentColor" opacity="0.3"/>
+                <path d="M40 14 L40 6M48 17 L54 11M54 28 L62 28" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                <circle cx="16" cy="40" r="4" stroke="currentColor" stroke-width="1.2"/>
+                <circle cx="64" cy="40" r="4" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M20 40 L36 40M44 40 L60 40" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2"/>
+              </svg>
+            </div>
+            <div class="pillar-glow" aria-hidden="true"></div>
+          </div>
+          <div class="pillar-number" aria-hidden="true">01</div>
+          <h3 class="pillar-title">Formación</h3>
+          <p class="pillar-desc">Bootcamps, Diplomados, Certificaciones</p>
+          <div class="pillar-line" aria-hidden="true"></div>
+          <p class="pillar-body">Programas intensivos diseñados para llevar tu conocimiento blockchain del cero al deploy.</p>
+          <div class="pillar-particles" aria-hidden="true"></div>
+        </article>
+
+        <!-- Pilar 2 -->
+        <article class="pillar-card" data-gsap="pillar" data-index="1">
+          <div class="pillar-icon-wrap" aria-hidden="true">
+            <div class="pillar-icon pillar-icon--incubation">
+              <svg viewBox="0 0 80 80" fill="none">
+                <path d="M40 70 L40 40" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M28 52 L40 40 L52 52" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <ellipse cx="40" cy="38" rx="18" ry="10" stroke="currentColor" stroke-width="1.5"/>
+                <ellipse cx="40" cy="32" rx="12" ry="7" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+                <ellipse cx="40" cy="26" rx="6" ry="4" fill="currentColor" opacity="0.2"/>
+                <circle cx="40" cy="24" r="2.5" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="pillar-glow" aria-hidden="true"></div>
+          </div>
+          <div class="pillar-number" aria-hidden="true">02</div>
+          <h3 class="pillar-title">Incubación</h3>
+          <p class="pillar-desc">De la Idea al MVP Funcional</p>
+          <div class="pillar-line" aria-hidden="true"></div>
+          <p class="pillar-body">Acompañamiento técnico y estratégico para convertir tu visión en un producto blockchain real.</p>
+          <div class="pillar-particles" aria-hidden="true"></div>
+        </article>
+
+        <!-- Pilar 3 -->
+        <article class="pillar-card" data-gsap="pillar" data-index="2">
+          <div class="pillar-icon-wrap" aria-hidden="true">
+            <div class="pillar-icon pillar-icon--connection">
+              <svg viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="40" r="6" fill="currentColor" opacity="0.3"/>
+                <circle cx="40" cy="40" r="3" fill="currentColor"/>
+                <circle cx="16" cy="24" r="4" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="64" cy="24" r="4" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="16" cy="56" r="4" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="64" cy="56" r="4" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="40" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="40" cy="70" r="4" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M20 26 L37 38M43 42 L60 26M20 54 L37 42M43 38 L60 54M40 14 L40 34M40 46 L40 66" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+              </svg>
+            </div>
+            <div class="pillar-glow" aria-hidden="true"></div>
+          </div>
+          <div class="pillar-number" aria-hidden="true">03</div>
+          <h3 class="pillar-title">Conexión</h3>
+          <p class="pillar-desc">Fundaciones Blockchain Internacionales</p>
+          <div class="pillar-line" aria-hidden="true"></div>
+          <p class="pillar-body">Red global de alianzas con los ecosistemas blockchain más importantes del mundo.</p>
+          <div class="pillar-particles" aria-hidden="true"></div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Background grid decoration -->
+    <div class="about-bg-grid" aria-hidden="true"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- SECTION 3: SEMINARIO DE ECONOMÍA DIGITAL             -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section id="event" class="section section--event">
+    <div class="event-bg-overlay" aria-hidden="true"></div>
+
+    <div class="section-container">
+      <div class="section-header" data-gsap="fade-up">
+        <span class="section-label">/ 02 &nbsp; PRÓXIMO EVENTO</span>
+      </div>
+
+      <div class="event-grid">
+
+        <!-- ── Left: Event Information ── -->
+        <div class="event-left">
+
+          <div class="event-badge">
+            <span class="event-badge-pulse" aria-hidden="true"></span>
+            <span>Registro Abierto</span>
+          </div>
+
+          <h2 class="event-title">
+            <span class="event-title-line">SEMINARIO DE</span>
+            <span class="event-title-line event-title-accent">ECONOMÍA DIGITAL</span>
+            <span class="event-title-line">Y TECNOLOGÍAS</span>
+            <span class="event-title-line">DISRUPTIVAS</span>
+          </h2>
+
+          <p class="event-subtitle">
+            IA, Blockchain y Fintech: Perspectivas académicas y empresariales
+          </p>
+
+          <!-- Meta info -->
+          <div class="event-meta">
+            <div class="event-meta-item">
+              <div class="event-meta-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <rect x="1" y="3" width="16" height="13" rx="2" stroke="currentColor" stroke-width="1.3"/>
+                  <path d="M1 7 L17 7M5 1 L5 5M13 1 L13 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="event-meta-text">
+                <span class="event-meta-label">Fecha</span>
+                <span class="event-meta-value">8 de Julio, 2026</span>
+              </div>
+            </div>
+            <div class="event-meta-item">
+              <div class="event-meta-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M9 1 C5.5 1 2 4 2 8 C2 13 9 17 9 17 C9 17 16 13 16 8 C16 4 12.5 1 9 1Z" stroke="currentColor" stroke-width="1.3"/>
+                  <circle cx="9" cy="8" r="2.5" stroke="currentColor" stroke-width="1.2"/>
+                </svg>
+              </div>
+              <div class="event-meta-text">
+                <span class="event-meta-label">Lugar</span>
+                <span class="event-meta-value">Auditorio FAE, USACH</span>
+              </div>
+            </div>
+            <div class="event-meta-item">
+              <div class="event-meta-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <circle cx="6" cy="6" r="2.5" stroke="currentColor" stroke-width="1.3"/>
+                  <circle cx="12" cy="6" r="2.5" stroke="currentColor" stroke-width="1.3"/>
+                  <path d="M1 16 C1 12 11 12 11 16" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                  <path d="M8 16 C8 12 17 12 17 16" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="event-meta-text">
+                <span class="event-meta-label">Organiza</span>
+                <span class="event-meta-value">Nodo Zero × MBA USACH</span>
+              </div>
+            </div>
+            <div class="event-meta-item">
+              <div class="event-meta-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M2 14 Q2 9 9 9 Q16 9 16 14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                  <circle cx="9" cy="5" r="3" stroke="currentColor" stroke-width="1.3"/>
+                  <path d="M13 2 L15 4M15 2 L13 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="event-meta-text">
+                <span class="event-meta-label">Asistentes</span>
+                <span class="event-meta-value">+1,000 esperados</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Audience -->
+          <div class="event-audience">
+            <span class="event-audience-label">Para:</span>
+            <div class="event-audience-chips">
+              <span class="audience-chip">Ejecutivos</span>
+              <span class="audience-chip">Developers</span>
+              <span class="audience-chip">Estudiantes</span>
+              <span class="audience-chip">Decision Makers</span>
+            </div>
+          </div>
+
+          <!-- CTAs -->
+          <div class="event-ctas">
+            <a href="https://luma.com/u1fw6bnw"
+               class="btn btn--primary btn--event"
+               target="_blank"
+               rel="noopener noreferrer">
+              <span class="btn-text">REGISTRARME AL EVENTO</span>
+              <span class="btn-icon" aria-hidden="true">→</span>
+              <div class="btn-liquid" aria-hidden="true"></div>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- ── Right: Visual Card ── -->
+        <div class="event-right">
+          <div class="event-visual-card">
+            <div class="event-card-glow" aria-hidden="true"></div>
+
+            <!-- Date display -->
+            <div class="event-date-hero">
+              <span class="event-date-num">08</span>
+              <div class="event-date-info">
+                <span class="event-date-month">JULIO</span>
+                <span class="event-date-year">2026</span>
+                <span class="event-date-type">Jornada completa</span>
+              </div>
+            </div>
+
+            <!-- Convergence Diagram: IA + Blockchain + Fintech -->
+            <div class="event-convergence-wrap" aria-hidden="true">
+              <svg class="event-convergence-svg" viewBox="0 0 300 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Outer pulse rings at convergence center -->
+                <circle cx="150" cy="112" r="38" stroke="#00FF88" stroke-width="0.6" opacity="0.18" stroke-dasharray="3 6" class="conv-ring conv-ring--1"/>
+                <circle cx="150" cy="112" r="56" stroke="#00FF88" stroke-width="0.4" opacity="0.09" stroke-dasharray="2 9" class="conv-ring conv-ring--2"/>
+                <!-- Connection lines -->
+                <line class="conv-line conv-line--ai"         x1="86"  y1="76"  x2="140" y2="108" stroke="#0A7AFF" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.65"/>
+                <line class="conv-line conv-line--blockchain" x1="214" y1="76"  x2="161" y2="108" stroke="#00FF88" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.65"/>
+                <line class="conv-line conv-line--fintech"    x1="150" y1="174" x2="150" y2="130" stroke="#00D9A0" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.65"/>
+                <!-- IA Node (top-left) -->
+                <circle cx="72" cy="60" r="34" fill="rgba(10,122,255,0.08)" stroke="#0A7AFF" stroke-width="1.2"/>
+                <text x="72" y="54" text-anchor="middle" fill="#0A7AFF" font-size="14" font-family="Space Mono,monospace" font-weight="700">IA</text>
+                <text x="72" y="70" text-anchor="middle" fill="#0A7AFF" font-size="8" font-family="Space Grotesk,sans-serif" opacity="0.65">Artificial</text>
+                <text x="72" y="81" text-anchor="middle" fill="#0A7AFF" font-size="8" font-family="Space Grotesk,sans-serif" opacity="0.65">Intelligence</text>
+                <!-- Blockchain Node (top-right) -->
+                <path d="M228 26 L258 43 L258 77 L228 94 L198 77 L198 43 Z" fill="rgba(0,255,136,0.07)" stroke="#00FF88" stroke-width="1.2"/>
+                <text x="228" y="57" text-anchor="middle" fill="#00FF88" font-size="8" font-family="Space Mono,monospace" font-weight="700" letter-spacing="0.5">BLOCK</text>
+                <text x="228" y="69" text-anchor="middle" fill="#00FF88" font-size="8" font-family="Space Mono,monospace" font-weight="700" letter-spacing="0.5">CHAIN</text>
+                <!-- Fintech Node (bottom-center) -->
+                <rect x="104" y="170" width="92" height="36" rx="10" fill="rgba(0,217,160,0.08)" stroke="#00D9A0" stroke-width="1.2"/>
+                <text x="150" y="193" text-anchor="middle" fill="#00D9A0" font-size="12" font-family="Space Mono,monospace" font-weight="700" letter-spacing="1">FINTECH</text>
+                <!-- Central Convergence Node -->
+                <circle cx="150" cy="112" r="22" fill="rgba(0,255,136,0.12)" stroke="#00FF88" stroke-width="1.5"/>
+                <circle cx="150" cy="112" r="10" fill="rgba(0,255,136,0.28)"/>
+                <circle cx="150" cy="112" r="4"  fill="#00FF88"/>
+              </svg>
+            </div>
+
+            <!-- Location chip -->
+            <div class="event-location-chip">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M7 1 C4 1 1 3.5 1 6.5 C1 10 7 13 7 13 C7 13 13 10 13 6.5 C13 3.5 10 1 7 1Z" stroke="currentColor" stroke-width="1.2"/>
+                <circle cx="7" cy="6.5" r="2" stroke="currentColor" stroke-width="1.1"/>
+              </svg>
+              <span>Auditorio FAE — Universidad de Santiago</span>
+            </div>
+
+            <!-- Organizer badge -->
+            <div class="event-organizer-badge">
+              <span class="org-line" aria-hidden="true"></span>
+              <span>Nodo Zero × MBA USACH</span>
+              <span class="org-line" aria-hidden="true"></span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- SECTION 4: TEAM                                     -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section id="team" class="section section--team">
+    <div class="section-container">
+      <div class="section-header" data-gsap="fade-up">
+        <span class="section-label">/ 03 &nbsp; EQUIPO</span>
+        <h2 class="section-title">Los que construyen<br /><em>el nodo.</em></h2>
+      </div>
+
+      <div class="team-grid">
+
+        <!-- Pablo Guzmán -->
+        <article class="team-card" data-gsap="team-card" data-index="0">
+          <div class="team-card-inner">
+            <div class="team-scan-line" aria-hidden="true"></div>
+            <div class="team-photo-wrap">
+              <div class="team-photo-placeholder" aria-label="Foto de Pablo Guzmán">
+                <img src="public/assets/images/team/pablo-guzman.png"
+                     alt="Pablo Guzmán"
+                     class="team-photo-img"
+                     loading="lazy" />
+                <div class="team-photo-overlay" aria-hidden="true"></div>
+              </div>
+            </div>
+            <div class="team-info">
+              <div class="team-role">Director Técnico</div>
+              <h3 class="team-name">Pablo Guzmán</h3>
+              <div class="team-tags">
+                <span class="team-tag">29 años en TI</span>
+                <span class="team-tag">Blockchain Architect</span>
+              </div>
+              <p class="team-bio">Arquitecto de soluciones blockchain con casi tres décadas forjando tecnología de frontera.</p>
+            </div>
+            <div class="team-hex-border" aria-hidden="true"></div>
+            <div class="team-glow" aria-hidden="true"></div>
+          </div>
+        </article>
+
+        <!-- Óscar Celis -->
+        <article class="team-card" data-gsap="team-card" data-index="1">
+          <div class="team-card-inner">
+            <div class="team-scan-line" aria-hidden="true"></div>
+            <div class="team-photo-wrap">
+              <div class="team-photo-placeholder" aria-label="Foto de Óscar Celis">
+                <img src="public/assets/images/team/oscar-celis.png"
+                     alt="Óscar Celis"
+                     class="team-photo-img"
+                     loading="lazy" />
+                <div class="team-photo-overlay" aria-hidden="true"></div>
+              </div>
+            </div>
+            <div class="team-info">
+              <div class="team-role">Director de Estrategia</div>
+              <h3 class="team-name">Óscar Celis</h3>
+              <div class="team-tags">
+                <span class="team-tag">Líder MBA USACH</span>
+                <span class="team-tag">Innovation</span>
+              </div>
+              <p class="team-bio">Estratega con visión de ecosistema, conectando el mundo académico con la economía descentralizada.</p>
+            </div>
+            <div class="team-hex-border" aria-hidden="true"></div>
+            <div class="team-glow" aria-hidden="true"></div>
+          </div>
+        </article>
+
+        <!-- Andrés Peña -->
+        <article class="team-card" data-gsap="team-card" data-index="2">
+          <div class="team-card-inner">
+            <div class="team-scan-line" aria-hidden="true"></div>
+            <div class="team-photo-wrap">
+              <div class="team-photo-placeholder" aria-label="Foto de Andrés Peña">
+                <img src="public/assets/images/team/andres-pena.png"
+                     alt="Andrés Peña"
+                     class="team-photo-img"
+                     loading="lazy" />
+                <div class="team-photo-overlay" aria-hidden="true"></div>
+              </div>
+            </div>
+            <div class="team-info">
+              <div class="team-role">Director de Comunidad</div>
+              <h3 class="team-name">Andrés Peña</h3>
+              <div class="team-tags">
+                <span class="team-tag">Web3 Educator</span>
+                <span class="team-tag">Community Builder</span>
+              </div>
+              <p class="team-bio">Constructor de comunidades Web3, educador y puente entre el talento latinoamericano y el ecosistema global.</p>
+            </div>
+            <div class="team-hex-border" aria-hidden="true"></div>
+            <div class="team-glow" aria-hidden="true"></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Background circuit decoration -->
+    <div class="team-bg-circuit" aria-hidden="true">
+      <svg viewBox="0 0 1440 600" fill="none" preserveAspectRatio="xMidYMid slice">
+        <path d="M0 300 L200 300 L200 150 L400 150 L400 300 L600 300" stroke="#00FF88" stroke-width="0.5" opacity="0.1"/>
+        <path d="M800 300 L1000 300 L1000 450 L1200 450 L1200 300 L1440 300" stroke="#00FF88" stroke-width="0.5" opacity="0.1"/>
+        <circle cx="200" cy="300" r="4" fill="#00FF88" opacity="0.15"/>
+        <circle cx="400" cy="150" r="4" fill="#00FF88" opacity="0.15"/>
+        <circle cx="600" cy="300" r="4" fill="#00FF88" opacity="0.15"/>
+        <circle cx="1000" cy="300" r="4" fill="#00FF88" opacity="0.15"/>
+        <circle cx="1200" cy="450" r="4" fill="#00FF88" opacity="0.15"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- SECTION 5: ALIANZAS                                 -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section id="allies" class="section section--allies">
+    <div class="section-container">
+      <div class="section-header" data-gsap="fade-up">
+        <span class="section-label">/ 04 &nbsp; ALIANZAS</span>
+        <h2 class="section-title">Conectados<br /><em>globalmente.</em></h2>
+      </div>
+
+      <!-- Constellation container -->
+      <div class="constellation-wrap" id="constellation-wrap">
+        <svg class="constellation-lines" id="constellation-svg" aria-hidden="true"></svg>
+
+        <div class="allies-grid">
+          <div class="ally-node" data-ally="ethereum" style="--row: 1; --col: 2;">
+            <div class="ally-logo">
+              <svg viewBox="0 0 60 60" fill="none" aria-label="Ethereum Foundation">
+                <path d="M30 6 L30 38 L52 28 Z" fill="currentColor" opacity="0.8"/>
+                <path d="M30 6 L8 28 L30 38 Z" fill="currentColor" opacity="0.5"/>
+                <path d="M30 42 L30 56 L52 32 Z" fill="currentColor" opacity="0.6"/>
+                <path d="M30 42 L8 32 L30 56 Z" fill="currentColor" opacity="0.4"/>
+                <path d="M30 38 L52 28 L30 42 L8 28 Z" fill="currentColor" opacity="0.3"/>
+              </svg>
+            </div>
+            <span class="ally-name">Ethereum</span>
+            <div class="ally-pulse" aria-hidden="true"></div>
+          </div>
+
+          <div class="ally-node" data-ally="stellar" style="--row: 1; --col: 4;">
+            <div class="ally-logo">
+              <svg viewBox="0 0 60 60" fill="none" aria-label="Stellar">
+                <path d="M30 10 L33 22 L46 22 L36 30 L39 42 L30 34 L21 42 L24 30 L14 22 L27 22 Z" fill="currentColor" opacity="0.8"/>
+                <circle cx="30" cy="30" r="20" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+              </svg>
+            </div>
+            <span class="ally-name">Stellar</span>
+            <div class="ally-pulse" aria-hidden="true"></div>
+          </div>
+
+          <div class="ally-node" data-ally="polkadot" style="--row: 2; --col: 1;">
+            <div class="ally-logo">
+              <svg viewBox="0 0 60 60" fill="none" aria-label="Polkadot">
+                <circle cx="30" cy="20" r="8" fill="currentColor" opacity="0.8"/>
+                <circle cx="14" cy="38" r="5" fill="currentColor" opacity="0.6"/>
+                <circle cx="46" cy="38" r="5" fill="currentColor" opacity="0.6"/>
+                <circle cx="30" cy="46" r="5" fill="currentColor" opacity="0.4"/>
+                <path d="M30 28 L14 33M30 28 L46 33M14 43 L25 46M46 43 L35 46" stroke="currentColor" stroke-width="0.8" opacity="0.4"/>
+              </svg>
+            </div>
+            <span class="ally-name">Polkadot</span>
+            <div class="ally-pulse" aria-hidden="true"></div>
+          </div>
+
+          <div class="ally-node" data-ally="avalanche" style="--row: 2; --col: 3;">
+            <div class="ally-logo">
+              <svg viewBox="0 0 60 60" fill="none" aria-label="Avalanche">
+                <path d="M30 10 L52 48 L8 48 Z" stroke="currentColor" stroke-width="2" fill="currentColor" opacity="0.15"/>
+                <path d="M24 48 L30 26 L36 48" fill="currentColor" opacity="0.8"/>
+              </svg>
+            </div>
+            <span class="ally-name">Avalanche</span>
+            <div class="ally-pulse" aria-hidden="true"></div>
+          </div>
+
+          <div class="ally-node" data-ally="usach" style="--row: 2; --col: 5;">
+            <div class="ally-logo">
+              <svg viewBox="0 0 60 60" fill="none" aria-label="USACH">
+                <rect x="10" y="28" width="40" height="22" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M20 28 L20 18 Q30 10 40 18 L40 28" stroke="currentColor" stroke-width="1.5"/>
+                <rect x="24" y="38" width="12" height="12" rx="1" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M30 38 L30 50" stroke="currentColor" stroke-width="1"/>
+              </svg>
+            </div>
+            <span class="ally-name">USACH</span>
+            <div class="ally-pulse" aria-hidden="true"></div>
+          </div>
+
+          <div class="ally-node" data-ally="inacap" style="--row: 3; --col: 2;">
+            <div class="ally-logo">
+              <svg viewBox="0 0 60 60" fill="none" aria-label="INACAP">
+                <path d="M12 46 L12 20 L30 12 L48 20 L48 46" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M20 46 L20 32 L30 28 L40 32 L40 46" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+                <path d="M8 46 L52 46" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M26 28 L26 46M34 28 L34 46" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+              </svg>
+            </div>
+            <span class="ally-name">INACAP</span>
+            <div class="ally-pulse" aria-hidden="true"></div>
+          </div>
+
+          <div class="ally-node" data-ally="chainlink" style="--row: 3; --col: 4;">
+            <div class="ally-logo">
+              <svg viewBox="0 0 60 60" fill="none" aria-label="Chainlink">
+                <path d="M30 8 L44 16 L44 32 L30 40 L16 32 L16 16 Z" stroke="currentColor" stroke-width="1.5" fill="currentColor" opacity="0.1"/>
+                <path d="M30 16 L38 21 L38 31 L30 36 L22 31 L22 21 Z" stroke="currentColor" stroke-width="1"/>
+                <circle cx="30" cy="28" r="4" fill="currentColor" opacity="0.5"/>
+                <path d="M30 40 L30 52" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="ally-name">Chainlink</span>
+            <div class="ally-pulse" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- SECTION 6: CTA FINAL                                -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section id="cta" class="section section--cta">
+    <canvas id="cta-particles-canvas" aria-hidden="true"></canvas>
+
+    <div class="cta-content">
+      <div class="cta-label" data-gsap="fade-up">/ 05 &nbsp; ÚNETE</div>
+
+      <h2 class="cta-title" data-gsap="split-text">
+        <span class="cta-line">CONSTRUYE EL</span>
+        <span class="cta-line cta-line--accent">FUTURO</span>
+        <span class="cta-line">DESCENTRALIZADO</span>
+      </h2>
+
+      <p class="cta-subtitle" data-gsap="fade-up">
+        El ecosistema blockchain necesita líderes latinoamericanos.<br />
+        Ese lugar podría ser tuyo.
+      </p>
+
+      <div class="cta-buttons cta-buttons--centered" data-gsap="fade-up">
+        <a href="mailto:contacto@nodozero.cl" class="btn btn--primary" role="button">
+          <span class="btn-text">Contacta a Nodo Zero</span>
+          <span class="btn-icon" aria-hidden="true">→</span>
+          <div class="btn-liquid" aria-hidden="true"></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Orbital rings decoration -->
+    <div class="cta-orbitals" aria-hidden="true">
+      <div class="orbital orbital--1"></div>
+      <div class="orbital orbital--2"></div>
+      <div class="orbital orbital--3"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- FOOTER                                              -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <footer id="footer" class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-symbol" aria-hidden="true">⬡</span>
+        <span class="footer-logo-text">NODO<span class="logo-accent">ZERO</span></span>
+      </div>
+
+      <nav class="footer-social" aria-label="Redes sociales">
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/company/nodo-zero/"
+           class="social-link"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="LinkedIn de Nodo Zero">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="1" y="1" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M5 8 L5 15M5 5 L5 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M9 15 L9 11 Q9 8 12 8 Q15 8 15 11 L15 15" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M9 8 L9 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <!-- X (Twitter) -->
+        <a href="https://x.com/nodozer0"
+           class="social-link"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="X (Twitter) de Nodo Zero">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M3 3 L17 17M3 17 L17 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <!-- Email -->
+        <a href="mailto:contacto@nodozero.cl"
+           class="social-link"
+           aria-label="Email de Nodo Zero">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="1" y="4" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M1 7 L10 12 L19 7" stroke="currentColor" stroke-width="1.4"/>
+          </svg>
+        </a>
+      </nav>
+
+      <div class="footer-copy">
+        <span>© 2026 Nodo Zero</span>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <span>Chile</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS modules -->
+  <script type="module" src="public/js/main.js"></script>
+</body>
+</html>
