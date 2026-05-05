@@ -8,15 +8,13 @@ import { CustomCursor }    from './cursor.js';
 import { Animations }      from './animations.js';
 import { ScrollHandler }   from './scroll.js';
 
-/* ── Wait for deferred CDN scripts ── */
-function waitForLibs(timeout = 6000) {
-  return new Promise((resolve, reject) => {
+/* ── Wait for GSAP CDN scripts ── */
+function waitForGsap(timeout = 4000) {
+  return new Promise((resolve) => {
     const start = Date.now();
     const check = () => {
-      const gsapReady  = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
-      const threeReady = typeof THREE !== 'undefined';
-      if (gsapReady && threeReady) return resolve();
-      if (Date.now() - start > timeout) return resolve(); /* Proceed anyway with fallbacks */
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') return resolve();
+      if (Date.now() - start > timeout) return resolve();
       requestAnimationFrame(check);
     };
     check();
@@ -25,30 +23,34 @@ function waitForLibs(timeout = 6000) {
 
 /* ── Boot sequence ── */
 async function init() {
-  await waitForLibs();
+  try {
+    await waitForGsap();
 
-  /* Cursor first (no deps) */
-  const cursor = new CustomCursor();
+    /* Cursor first (no deps) */
+    const cursor = new CustomCursor();
 
-  /* Three.js space background */
-  const space = new SpaceBackground('space-canvas');
+    /* Three.js space background (non-blocking — THREE may or may not be ready) */
+    const space = new SpaceBackground('space-canvas');
 
-  /* Scroll behaviour (drag, particles) */
-  const scroll = new ScrollHandler();
+    /* Scroll behaviour (drag, particles) */
+    const scroll = new ScrollHandler();
 
-  /* GSAP animations */
-  const animations = new Animations();
+    /* GSAP animations */
+    const animations = new Animations();
 
-  /* Lazy: refresh ScrollTrigger after fonts load */
-  document.fonts.ready.then(() => {
-    if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
-  });
+    /* Lazy: refresh ScrollTrigger after fonts load */
+    document.fonts.ready.then(() => {
+      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+    });
 
-  /* Clean up on page unload */
-  window.addEventListener('beforeunload', () => {
-    cursor.destroy?.();
-    space.destroy?.();
-  });
+    /* Clean up on page unload */
+    window.addEventListener('beforeunload', () => {
+      cursor.destroy?.();
+      space.destroy?.();
+    });
+  } catch (err) {
+    console.error('Nodo Zero init error:', err);
+  }
 }
 
 /* ── Entry point ── */

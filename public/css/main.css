@@ -196,8 +196,6 @@ img { display: block; max-width: 100%; }
   align-items: center;
   gap: 12px;
   margin-bottom: 40px;
-  opacity: 0;
-  transform: translateY(20px);
 }
 
 .logo-symbol {
@@ -241,8 +239,6 @@ img { display: block; max-width: 100%; }
 
 .tagline-line {
   display: block;
-  opacity: 0;
-  transform: translateY(30px);
 }
 
 .tagline-accent {
@@ -256,8 +252,6 @@ img { display: block; max-width: 100%; }
   color: var(--text-dim);
   line-height: 1.7;
   margin-bottom: 56px;
-  opacity: 0;
-  transform: translateY(20px);
 }
 
 /* Scroll CTA */
@@ -266,7 +260,6 @@ img { display: block; max-width: 100%; }
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  opacity: 0;
   cursor: pointer;
 }
 
@@ -303,8 +296,6 @@ img { display: block; max-width: 100%; }
   border: 1px solid var(--glass-border);
   border-radius: 16px;
   backdrop-filter: blur(20px);
-  opacity: 0;
-  transform: translateX(20px);
 }
 
 .stat-item {
@@ -368,8 +359,6 @@ img { display: block; max-width: 100%; }
   border-radius: 24px;
   overflow: hidden;
   transition: border-color 0.4s, transform 0.4s var(--ease-expo);
-  opacity: 0;
-  transform: translateY(40px);
 }
 
 .pillar-card:hover {
@@ -516,8 +505,6 @@ img { display: block; max-width: 100%; }
   color: var(--green);
   text-transform: uppercase;
   margin-bottom: 22px;
-  opacity: 0;
-  transform: translateY(10px);
 }
 
 .event-badge-pulse {
@@ -546,8 +533,6 @@ img { display: block; max-width: 100%; }
 
 .event-title-line {
   display: block;
-  opacity: 0;
-  transform: translateY(22px);
 }
 
 .event-title-accent {
@@ -562,8 +547,6 @@ img { display: block; max-width: 100%; }
   margin-bottom: 28px;
   line-height: 1.55;
   font-style: italic;
-  opacity: 0;
-  transform: translateY(14px);
 }
 
 /* ── Meta grid ── */
@@ -572,8 +555,6 @@ img { display: block; max-width: 100%; }
   grid-template-columns: 1fr 1fr;
   gap: 12px;
   margin-bottom: 28px;
-  opacity: 0;
-  transform: translateY(14px);
 }
 
 .event-meta-item {
@@ -630,8 +611,6 @@ img { display: block; max-width: 100%; }
   border-left: 2px solid var(--green-border);
   border-radius: 12px;
   transition: border-color 0.3s, border-left-color 0.3s;
-  opacity: 0;
-  transform: translateX(-18px);
 }
 
 .event-highlight:hover {
@@ -669,8 +648,6 @@ img { display: block; max-width: 100%; }
   gap: 10px;
   flex-wrap: wrap;
   margin-bottom: 28px;
-  opacity: 0;
-  transform: translateY(10px);
 }
 
 .event-audience-label {
@@ -706,8 +683,6 @@ img { display: block; max-width: 100%; }
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
-  opacity: 0;
-  transform: translateY(14px);
 }
 
 .btn--event {
@@ -725,8 +700,6 @@ img { display: block; max-width: 100%; }
 .event-right {
   position: sticky;
   top: 100px;
-  opacity: 0;
-  transform: translateX(28px);
 }
 
 .event-visual-card {
@@ -880,8 +853,6 @@ img { display: block; max-width: 100%; }
 /* Team Card */
 .team-card {
   position: relative;
-  opacity: 0;
-  transform: translateY(40px);
 }
 
 .team-card-inner {
@@ -1197,8 +1168,6 @@ img { display: block; max-width: 100%; }
   color: var(--green);
   text-transform: uppercase;
   margin-bottom: 32px;
-  opacity: 0;
-  transform: translateY(20px);
 }
 
 .cta-title {
@@ -1212,8 +1181,6 @@ img { display: block; max-width: 100%; }
 .cta-line {
   display: block;
   color: var(--cream);
-  opacity: 0;
-  transform: translateY(40px);
 }
 
 .cta-line--accent {
@@ -1226,8 +1193,6 @@ img { display: block; max-width: 100%; }
   color: var(--text-dim);
   line-height: 1.7;
   margin-bottom: 48px;
-  opacity: 0;
-  transform: translateY(20px);
 }
 
 /* CTA Buttons */
@@ -1238,8 +1203,6 @@ img { display: block; max-width: 100%; }
   gap: 20px;
   margin-bottom: 40px;
   flex-wrap: wrap;
-  opacity: 0;
-  transform: translateY(20px);
 }
 
 .cta-buttons--centered {
@@ -1311,8 +1274,6 @@ img { display: block; max-width: 100%; }
   font-family: var(--font-mono);
   font-size: 13px;
   color: var(--text-dim);
-  opacity: 0;
-  transform: translateY(10px);
 }
 
 .cta-email a {

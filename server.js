@@ -18,6 +18,12 @@ app.get('*', (req, res) =>
   res.sendFile(path.join(ROOT, 'index.html'))
 );
 
-app.listen(PORT, () =>
-  console.log(`Nodo Zero → http://localhost:${PORT}`)
-);
+/* Local dev server */
+if (require.main === module) {
+  app.listen(PORT, () =>
+    console.log(`Nodo Zero → http://localhost:${PORT}`)
+  );
+}
+
+/* Vercel serverless export */
+module.exports = app;

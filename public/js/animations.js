@@ -25,15 +25,11 @@ export class Animations {
 
   /* ── Utility: show all if GSAP missing ── */
   _showAllElements() {
-    document.querySelectorAll('[data-gsap]').forEach(el => {
-      el.style.opacity = '1';
-      el.style.transform = 'none';
-    });
     document.querySelectorAll(
-      '.tagline-line, .pillar-card, .team-card, ' +
-      '.event-title-line, .event-badge, .event-subtitle, ' +
-      '.event-meta, .event-highlight, .event-audience, ' +
-      '.event-ctas, .event-right'
+      '[data-gsap], .tagline-line, .pillar-card, .team-card,' +
+      '.event-badge, .event-title-line, .event-subtitle, .event-meta,' +
+      '.event-highlight, .event-audience, .event-ctas, .event-right,' +
+      '.cta-line, .hero-logo, .hero-subtitle, .hero-scroll-cta, .hero-stats'
     ).forEach(el => {
       el.style.opacity = '1';
       el.style.transform = 'none';
@@ -44,18 +40,21 @@ export class Animations {
   _heroEntrance() {
     const tl = gsap.timeline({ delay: 0.3 });
 
-    tl.to('.hero-logo', {
-      opacity: 1, y: 0, duration: 0.9, ease: 'expo.out',
+    tl.from('.hero-logo', {
+      opacity: 0, y: 20, duration: 0.9, ease: 'expo.out',
     });
-    tl.to('.tagline-line', {
-      opacity: 1, y: 0, duration: 0.8, ease: 'expo.out', stagger: 0.12,
+    tl.from('.tagline-line', {
+      opacity: 0, y: 30, duration: 0.8, ease: 'expo.out', stagger: 0.12,
     }, '-=0.4');
-    tl.to('.hero-subtitle', {
-      opacity: 1, y: 0, duration: 0.7, ease: 'expo.out',
+    tl.from('.hero-subtitle', {
+      opacity: 0, y: 20, duration: 0.7, ease: 'expo.out',
     }, '-=0.3');
-    tl.to(['.hero-scroll-cta', '.hero-stats'], {
-      opacity: 1, y: 0, x: 0, duration: 0.7, ease: 'expo.out', stagger: 0.15,
+    tl.from('.hero-scroll-cta', {
+      opacity: 0, y: 10, duration: 0.7, ease: 'expo.out',
     }, '-=0.3');
+    tl.from('.hero-stats', {
+      opacity: 0, x: 20, duration: 0.7, ease: 'expo.out',
+    }, '-=0.4');
   }
 
   /* ── ABOUT / PILLARS ── */
@@ -66,9 +65,9 @@ export class Animations {
     });
 
     document.querySelectorAll('.pillar-card').forEach((card, i) => {
-      gsap.to(card, {
+      gsap.from(card, {
         scrollTrigger: { trigger: card, start: 'top 85%', toggleActions: 'play none none none' },
-        opacity: 1, y: 0, duration: 0.8,
+        opacity: 0, y: 40, duration: 0.8,
         delay: i * 0.15,
         ease: 'expo.out',
       });
@@ -102,31 +101,31 @@ export class Animations {
       scrollTrigger: { trigger: '#event', start: 'top 68%' },
     });
 
-    tl.to('.event-badge', { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out' })
-      .to('.event-title-line', {
-        opacity: 1, y: 0, duration: 0.75, ease: 'expo.out', stagger: 0.1,
+    tl.from('.event-badge', { opacity: 0, y: 10, duration: 0.6, ease: 'expo.out' })
+      .from('.event-title-line', {
+        opacity: 0, y: 22, duration: 0.75, ease: 'expo.out', stagger: 0.1,
       }, '-=0.3')
-      .to('.event-subtitle', { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out' }, '-=0.3')
-      .to('.event-meta', { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out' }, '-=0.25');
+      .from('.event-subtitle', { opacity: 0, y: 14, duration: 0.6, ease: 'expo.out' }, '-=0.3')
+      .from('.event-meta', { opacity: 0, y: 14, duration: 0.6, ease: 'expo.out' }, '-=0.25');
 
     /* Highlights stagger */
-    gsap.to('.event-highlight', {
+    gsap.from('.event-highlight', {
       scrollTrigger: { trigger: '.event-highlights', start: 'top 82%' },
-      opacity: 1, x: 0, duration: 0.7, ease: 'expo.out',
+      opacity: 0, x: -18, duration: 0.7, ease: 'expo.out',
       stagger: 0.14,
     });
 
     /* Audience + CTAs */
-    gsap.to(['.event-audience', '.event-ctas'], {
+    gsap.from(['.event-audience', '.event-ctas'], {
       scrollTrigger: { trigger: '.event-audience', start: 'top 88%' },
-      opacity: 1, y: 0, duration: 0.7, ease: 'expo.out',
+      opacity: 0, y: 10, duration: 0.7, ease: 'expo.out',
       stagger: 0.12,
     });
 
     /* Right card slides in */
-    gsap.to('.event-right', {
+    gsap.from('.event-right', {
       scrollTrigger: { trigger: '.event-grid', start: 'top 72%' },
-      opacity: 1, x: 0, duration: 1.0, ease: 'expo.out',
+      opacity: 0, x: 28, duration: 1.0, ease: 'expo.out',
     });
 
     /* Register button pulse on hover */
@@ -177,9 +176,9 @@ export class Animations {
     });
 
     document.querySelectorAll('.team-card').forEach((card, i) => {
-      gsap.to(card, {
+      gsap.from(card, {
         scrollTrigger: { trigger: card, start: 'top 85%' },
-        opacity: 1, y: 0, duration: 0.9,
+        opacity: 0, y: 40, duration: 0.9,
         delay: i * 0.18,
         ease: 'expo.out',
       });
@@ -262,11 +261,11 @@ export class Animations {
       scrollTrigger: { trigger: '#cta', start: 'top 75%' },
     });
 
-    tl.to('.cta-label',    { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out' })
-      .to('.cta-line',     { opacity: 1, y: 0, duration: 0.9, ease: 'expo.out', stagger: 0.15 }, '-=0.3')
-      .to('.cta-subtitle', { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out' }, '-=0.4')
-      .to('.cta-buttons',  { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out' }, '-=0.3')
-      .to('.cta-email',    { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out' }, '-=0.2');
+    tl.from('.cta-label',    { opacity: 0, y: 20, duration: 0.7, ease: 'expo.out' })
+      .from('.cta-line',     { opacity: 0, y: 40, duration: 0.9, ease: 'expo.out', stagger: 0.15 }, '-=0.3')
+      .from('.cta-subtitle', { opacity: 0, y: 20, duration: 0.7, ease: 'expo.out' }, '-=0.4')
+      .from('.cta-buttons',  { opacity: 0, y: 20, duration: 0.7, ease: 'expo.out' }, '-=0.3')
+      .from('.cta-email',    { opacity: 0, y: 10, duration: 0.6, ease: 'expo.out' }, '-=0.2');
 
     document.querySelectorAll('.btn--primary').forEach(btn => {
       btn.addEventListener('mouseenter', () => {
