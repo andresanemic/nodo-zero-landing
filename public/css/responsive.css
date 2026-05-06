@@ -72,7 +72,7 @@
   .hero-content { padding: 0 16px; }
 
   .hero-logo { margin-bottom: 28px; }
-  .logo-symbol { font-size: 28px; }
+  .logo-symbol { width: 28px; height: 28px; }
   .logo-text { font-size: 18px; }
 
   .hero-tagline { font-size: clamp(32px, 8vw, 52px); }
