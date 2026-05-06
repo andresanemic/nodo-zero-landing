@@ -195,6 +195,18 @@
   /* Hero */
   .hero-tagline { font-size: clamp(28px, 8vw, 40px); }
 
+  /* CTA final — evitar desbordamiento en pantallas pequeñas */
+  .cta-title {
+    font-size: clamp(28px, 7.5vw, 44px);
+    letter-spacing: -0.02em;
+  }
+
+  .cta-content {
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
   /* Hero stats — simplified */
   .hero-stats { gap: 12px; padding: 10px 16px; }
   .stat-number { font-size: 20px; }

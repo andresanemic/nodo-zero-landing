@@ -18,7 +18,6 @@ export class SpaceBackground {
     this._initScene();
     this._createStarLayers();
     this._createNebula();
-    this._createNetworkNode();
     this._bindEvents();
     this._animate();
   }
@@ -90,25 +89,6 @@ export class SpaceBackground {
       this.starLayers.push(stars);
     });
 
-    /* Occasional green-tinted stars */
-    if (!this.isLowPower) {
-      const greenGeo  = new THREE.BufferGeometry();
-      const greenPos  = new Float32Array(120 * 3);
-      for (let j = 0; j < 120; j++) {
-        greenPos[j * 3]     = (Math.random() - 0.5) * 2000;
-        greenPos[j * 3 + 1] = (Math.random() - 0.5) * 2000;
-        greenPos[j * 3 + 2] = (Math.random() - 0.5) * 800;
-      }
-      greenGeo.setAttribute('position', new THREE.BufferAttribute(greenPos, 3));
-      const greenMat = new THREE.PointsMaterial({
-        color: 0x00ff88, size: 1.2, transparent: true,
-        opacity: 0.6, sizeAttenuation: true, depthWrite: false,
-      });
-      const greenStars = new THREE.Points(greenGeo, greenMat);
-      greenStars.userData = { speed: 0.04, parallaxFactor: 0.1 };
-      this.scene.add(greenStars);
-      this.starLayers.push(greenStars);
-    }
   }
 
   _createNebula() {
@@ -145,81 +125,6 @@ export class SpaceBackground {
 
     this.nebula = new THREE.Points(geo, mat);
     this.scene.add(this.nebula);
-  }
-
-  _createNetworkNode() {
-    /* Floating network node visible behind hero content */
-    const group = new THREE.Group();
-
-    /* Central sphere */
-    const sphereGeo = new THREE.SphereGeometry(18, 32, 32);
-    const sphereMat = new THREE.MeshBasicMaterial({
-      color: 0x00ff88, transparent: true, opacity: 0.08, wireframe: false,
-    });
-    const sphere = new THREE.Mesh(sphereGeo, sphereMat);
-    group.add(sphere);
-
-    /* Wireframe overlay */
-    const wireGeo = new THREE.SphereGeometry(18, 12, 8);
-    const wireMat = new THREE.MeshBasicMaterial({
-      color: 0x00ff88, wireframe: true, transparent: true, opacity: 0.25,
-    });
-    const wire = new THREE.Mesh(wireGeo, wireMat);
-    group.add(wire);
-
-    /* Orbiting rings */
-    const ringData = [
-      { r: 34, tube: 0.3, rot: [0.4, 0, 0],   color: 0x00ff88, opacity: 0.4 },
-      { r: 46, tube: 0.2, rot: [0, 0.3, 0.8], color: 0x0a7aff, opacity: 0.3 },
-      { r: 58, tube: 0.15, rot: [1.1, 0.5, 0], color: 0x00d9a0, opacity: 0.25 },
-    ];
-
-    this.rings = [];
-    ringData.forEach(d => {
-      const geo = new THREE.TorusGeometry(d.r, d.tube, 8, 80);
-      const mat = new THREE.MeshBasicMaterial({
-        color: d.color, transparent: true, opacity: d.opacity,
-      });
-      const ring = new THREE.Mesh(geo, mat);
-      ring.rotation.set(...d.rot);
-      ring.userData.rotSpeed = {
-        x: (Math.random() - 0.5) * 0.003,
-        y: (Math.random() - 0.5) * 0.004,
-        z: (Math.random() - 0.5) * 0.002,
-      };
-      group.add(ring);
-      this.rings.push(ring);
-    });
-
-    /* Satellite nodes */
-    const nodePositions = [
-      [50, 20, 0], [-40, -30, 20], [10, 55, -10],
-      [-30, 40, -30], [45, -40, 15], [-55, 10, 5],
-    ];
-
-    nodePositions.forEach(pos => {
-      const geo = new THREE.SphereGeometry(2.5, 8, 8);
-      const mat = new THREE.MeshBasicMaterial({
-        color: 0x00ff88, transparent: true, opacity: 0.8,
-      });
-      const node = new THREE.Mesh(geo, mat);
-      node.position.set(...pos);
-
-      /* Line to center */
-      const lineGeo = new THREE.BufferGeometry().setFromPoints([
-        new THREE.Vector3(0, 0, 0),
-        new THREE.Vector3(...pos),
-      ]);
-      const lineMat = new THREE.LineBasicMaterial({
-        color: 0x00ff88, transparent: true, opacity: 0.2,
-      });
-      group.add(new THREE.Line(lineGeo, lineMat));
-      group.add(node);
-    });
-
-    group.position.set(0, 0, -100);
-    this.networkNode = group;
-    this.scene.add(group);
   }
 
   _bindEvents() {
@@ -263,18 +168,6 @@ export class SpaceBackground {
     if (this.nebula) {
       this.nebula.rotation.y += 0.0003;
       this.nebula.rotation.x += 0.0001;
-    }
-
-    /* Network node */
-    if (this.networkNode) {
-      this.networkNode.rotation.y = t * 0.12 + this.mouse.x * 0.3;
-      this.networkNode.rotation.x = Math.sin(t * 0.08) * 0.2 + this.mouse.y * 0.2;
-
-      this.rings.forEach(ring => {
-        ring.rotation.x += ring.userData.rotSpeed.x;
-        ring.rotation.y += ring.userData.rotSpeed.y;
-        ring.rotation.z += ring.userData.rotSpeed.z;
-      });
     }
 
     /* Camera subtle drift */
