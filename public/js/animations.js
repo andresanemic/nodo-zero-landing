@@ -52,9 +52,6 @@ export class Animations {
     tl.from('.hero-scroll-cta', {
       opacity: 0, y: 10, duration: 0.7, ease: 'expo.out',
     }, '-=0.3');
-    tl.from('.hero-stats', {
-      opacity: 0, x: 20, duration: 0.7, ease: 'expo.out',
-    }, '-=0.4');
   }
 
   /* ── ABOUT / PILLARS ── */
@@ -107,13 +104,6 @@ export class Animations {
       }, '-=0.3')
       .from('.event-subtitle', { opacity: 0, y: 14, duration: 0.6, ease: 'expo.out' }, '-=0.3')
       .from('.event-meta', { opacity: 0, y: 14, duration: 0.6, ease: 'expo.out' }, '-=0.25');
-
-    /* Highlights stagger */
-    gsap.from('.event-highlight', {
-      scrollTrigger: { trigger: '.event-highlights', start: 'top 82%' },
-      opacity: 0, x: -18, duration: 0.7, ease: 'expo.out',
-      stagger: 0.14,
-    });
 
     /* Audience + CTAs */
     gsap.from(['.event-audience', '.event-ctas'], {
@@ -264,8 +254,7 @@ export class Animations {
     tl.from('.cta-label',    { opacity: 0, y: 20, duration: 0.7, ease: 'expo.out' })
       .from('.cta-line',     { opacity: 0, y: 40, duration: 0.9, ease: 'expo.out', stagger: 0.15 }, '-=0.3')
       .from('.cta-subtitle', { opacity: 0, y: 20, duration: 0.7, ease: 'expo.out' }, '-=0.4')
-      .from('.cta-buttons',  { opacity: 0, y: 20, duration: 0.7, ease: 'expo.out' }, '-=0.3')
-      .from('.cta-email',    { opacity: 0, y: 10, duration: 0.6, ease: 'expo.out' }, '-=0.2');
+      .from('.cta-buttons',  { opacity: 0, y: 20, duration: 0.7, ease: 'expo.out' }, '-=0.3');
 
     document.querySelectorAll('.btn--primary').forEach(btn => {
       btn.addEventListener('mouseenter', () => {
