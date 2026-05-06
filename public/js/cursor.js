@@ -80,9 +80,13 @@ export class CustomCursor {
       document.body.classList.toggle('cursor-text', isText && !isClickable);
     });
 
-    document.addEventListener('mousedown', () => {
-      document.body.classList.add('cursor-click');
-      setTimeout(() => document.body.classList.remove('cursor-click'), 400);
+    document.addEventListener('mousedown', e => {
+      const ripple = document.createElement('div');
+      ripple.className = 'cursor-ripple';
+      ripple.style.left = e.clientX + 'px';
+      ripple.style.top  = e.clientY + 'px';
+      document.body.appendChild(ripple);
+      ripple.addEventListener('animationend', () => ripple.remove());
     });
   }
 
